@@ -9,7 +9,7 @@ describe Garage do
 	let(:a_broken_bike)            { Bike.new.break!                      }
 	let(:another_broken_bike)      { Bike.new.break!                      }
 	let(:broken_bikes)             { [a_broken_bike, another_broken_bike] }
-	let(:garage_with_broken_bikes) { Garage.new(bikes: broken_bikes)       }
+	let(:garage_with_broken_bikes) { Garage.new(bikes: broken_bikes)      }
 
 	it "should allow setting default capacity on intialising" do
 		expect(garage.capacity).to eq 500
@@ -24,4 +24,7 @@ describe Garage do
 		expect(garage_with_broken_bikes.bikes).to eq [a_broken_bike, another_broken_bike]
 	end
 
+	it 'should create a unique garage number' do
+		expect(garage.garage_number).to match(/^[A-Z]{2}-[\d]{2}/)
+	end
 end

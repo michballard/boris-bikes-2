@@ -48,4 +48,7 @@ describe DockingStation do
 		expect{station.release_bike_to(person)}.to raise_error NoAvailableBikesError
 	end
 
+	it 'should create a unique docking station number' do
+		expect(station.station_number).to match(/^[A-Z]{2}-[\d]{4}/)
+	end
 end

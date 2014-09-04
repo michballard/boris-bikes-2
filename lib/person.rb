@@ -22,5 +22,3 @@ class Person
 	end
 
 end
-
-

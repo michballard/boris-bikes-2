@@ -45,4 +45,9 @@ describe Van do
 		expect(van.available_bikes).to eq []
 		expect(docking_station.available_bikes).to eq [bike, bike2]	
 	end
+
+	it 'should create a unique van number' do
+		expect(van.van_number).to match(/^[A-Z]{3}-[\d]{3}/)
+	end
+
 end

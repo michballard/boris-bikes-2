@@ -6,9 +6,12 @@ class DockingStation
 
 	include BikeContainer
 
+	attr_reader :station_number
+
 	def initialize(options = {})
 		self.capacity = options.fetch(:capacity, capacity)
 		@bikes = []
+		@station_number = generate_station_number
 	end
 
 	def after_release(bike)
@@ -40,4 +43,7 @@ class DockingStation
 		person.gets bike_to_be_rented
 	end
 
+	def generate_station_number
+		"#{[*"A".."Z"].sample(2).join}-#{rand(1000..9999)}"
+	end
 end

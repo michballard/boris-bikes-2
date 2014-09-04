@@ -5,9 +5,12 @@ class Van
 
 	include BikeContainer
 
+	attr_reader :van_number
+
 	def initialize(options = {})
 		self.capacity = options.fetch(:capacity, capacity)
 		@bikes = []
+		@van_number = generate_van_number
 	end
 
 	def collect_broken_bikes_from(station)
@@ -32,6 +35,10 @@ class Van
 		until self.available_bikes.empty?
 			station.accept(release_a_bike)
 		end
+	end
+
+	def generate_van_number
+		"#{[*"A".."Z"].sample(3).join}-#{rand(100..999)}"
 	end
 end
 
